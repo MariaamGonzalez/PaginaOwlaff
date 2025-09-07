@@ -1,0 +1,432 @@
+:root {
+    /* Variables globales de colores y gradientes para no tener que usar los codigos muy seguido */
+    --color-bg-main: #fff8ed;
+    --color-bg-white: #fff;
+    --color-bg-hero-gradient: linear-gradient(120deg, #f6c177 0%, #c68642 100%);
+    --color-bg-btn-gradient: linear-gradient(90deg, #8d5524 0%, #f6c177 100%);
+    --color-bg-btn-gradient-hover: linear-gradient(90deg, #f6c177 0%, #8d5524 100%);
+    --color-border-main: #e0c9a6;
+    --color-primary: #8d5524;
+    --color-primary-light: #c68642;
+    --color-shadow: 0 2px 8px rgba(141,85,36,0.10);
+    --color-shadow-strong: 0 4px 16px rgba(141,85,36,0.10);
+    --color-shadow-photo: 0 2px 12px rgba(141,85,36,0.12);
+    --color-shadow-hero: 0 8px 32px rgba(246,193,119,0.15);
+    --color-shadow-footer: 0 -2px 8px rgba(92,51,16,0.05);
+    --color-text-main: #4b2e05;
+    --color-text-white: #fff;
+    --color-btn-hover: #c68642;
+    --color-btn: #f6c177;
+    --color-box-gradient: linear-gradient(135deg, #fff8ed 80%, #f6c177 150%);
+}
+
+/* Modelo de cajas y reset de márgenes/paddings */
+* {
+    box-sizing: border-box; /* Asegura que el padding y border se incluyan en el ancho/alto total */
+    margin: 0; /* Elimina márgenes por defecto */
+    padding: 0; /* Elimina paddings por defecto */
+}
+
+/* Altura base para html y body */
+html, body {
+    height: 100%; /* Asegura que html y body ocupen toda la altura de la ventana */
+}
+
+/* Estilos generales del body */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif; /* Fuente base */
+    background: var(--color-bg-main); /* Fondo principal */
+    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
+    display: flex; /* Flexbox para alinear contenido */
+    flex-direction: column; /* Coloca los elementos en columna */
+    color: var(--color-text-main); /* Color de texto principal */
+    padding-top: 0; /* Elimina padding superior */
+}
+
+/* Header fijo superior */
+header {
+    box-shadow: var(--color-shadow); /* Sombra para el header */
+    background: var(--color-bg-white); /* Fondo blanco para el header */
+    border-bottom: 2px solid var(--color-border-main); /* Borde inferior del header */
+    position: fixed; /* Fija el header en la parte superior */
+    top: 0; /* Posición superior */
+    left: 0; /* Posición izquierda */
+    width: 100%; /* Ancho completo */
+    z-index: 100; /* Asegura que el header esté por encima de otros elementos */
+}
+
+/* Barra de navegación principal */
+.navbar {
+    display: flex; /* Flexbox para alinear elementos */
+    align-items: center; /* Alinea verticalmente al centro */
+    justify-content: space-between; /* Espacio entre elementos */
+    padding: 1rem 2rem; /* Padding para el header */
+    position: relative; /* Posición relativa para el menú desplegable */
+}
+
+/* Contenedor del logo */
+.logo {
+    display: flex; /* Flexbox para alinear logo e texto */
+    align-items: center; /* Alinea verticalmente al centro */
+    gap: 0.5rem; /* Espacio entre logo e texto */
+    text-decoration: none; /* Elimina subrayado del enlace */
+}
+
+/* Imagen del logo */
+.logo-img {
+    height: 38px; /* Altura del logo */
+    width: auto; /* Ancho automático para mantener proporciones */
+    vertical-align: middle; /* Alineación vertical del logo */
+    display: inline-block; /* Asegura que el logo se comporte como un bloque en línea */
+}
+
+/* Texto del logo */
+.logo-text {
+    vertical-align: middle; /* Alineación vertical del texto */
+    font-weight: bold; /* Negrita para el texto del logo */
+    font-size: 1.5rem; /* Tamaño de fuente del texto del logo */
+    color: var(--color-primary); /* Color del texto del logo */
+    text-decoration: none; /* Elimina subrayado del enlace */
+}
+
+/* Botón hamburguesa del menú */
+.menu-toggle {
+    display: block; /* Muestra el botón de menú */
+    font-size: 2rem; /* Tamaño de fuente del icono */
+    background: none; /* Sin fondo */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    margin-left: 1.5rem; /* Margen izquierdo para separar del logo */
+    position: relative; /* Posición relativa para el icono */
+    top: 1px; /* Ajuste vertical del icono */
+    color: var(--color-primary); /* Color del icono */
+}
+
+/* Menú desplegable */
+.menu {
+    list-style: none; /* Elimina viñetas de la lista */
+    display: flex; /* Flexbox para alinear elementos del menú */
+    flex-direction: column; /* Coloca los elementos en columna */
+    gap: 1.5rem; /* Espacio entre elementos del menú */
+    position: fixed; /* Fija el menú en la pantalla */
+    top: 70px; /* Posición debajo del header */
+    right: 1rem; /* Posición a la derecha */
+    background: var(--color-bg-white); /* Fondo blanco para el menú */
+    box-shadow: 0 6px 24px 0 rgba(141,85,36,0.13); /* Sombra para el menú */
+    border: 2px solid var(--color-border-main); /* Borde del menú */
+    border-radius: 0 0 12px 12px; /* Bordes redondeados inferiores */
+    width: 220px; /* Ancho del menú */
+    z-index: 200; /* Asegura que el menú esté por encima de otros elementos */
+    padding: 0 0 0 0; /* Padding interno del menú */
+    align-items: flex-start; /* Alinea los elementos al inicio */
+    transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s, padding 0.2s; /* Transiciones suaves para abrir/cerrar el menú */
+    max-height: 0; /* Altura máxima inicial del menú (cerrado) */
+    opacity: 0; /* Opacidad inicial del menú (cerrado) */
+    overflow: hidden; /* Oculta el contenido desbordado */
+}
+
+/* Enlaces del menú */
+.menu li a {
+    text-decoration: none; /* Elimina subrayado de los enlaces */
+    color: var(--color-primary); /* Color de los enlaces */
+    font-weight: 500; /* Peso de fuente de los enlaces */
+    padding: 0.5rem 1rem; /* Padding interno de los enlaces */
+    border-radius: 8px; /* Bordes redondeados para los enlaces */
+    transition: background 0.2s, color 0.2s; /* Transiciones suaves para hover */
+}
+
+/* Hover en enlaces del menú */
+.menu li a:hover {
+    background: var(--color-primary); /* Fondo al pasar el mouse */
+    color: var(--color-bg-white); /* Color del texto al pasar el mouse */
+    box-shadow: var(--color-shadow-strong); /* Sombra al pasar el mouse */
+}
+
+/* Menú abierto */
+.menu.open {
+    max-height: 500px; /* Altura máxima al abrir el menú */
+    opacity: 1; /* Opacidad al abrir el menú */
+    padding: 1rem 0; /* Padding interno al abrir el menú */
+}
+
+/* Selector de idioma */
+.lang-switch {
+    display: flex; /* Flexbox para alinear botones de idioma */
+    gap: 0.5rem; /* Espacio entre botones */
+    margin-left: auto; /* Alinea a la derecha */
+    margin-right: 0.5rem; /* Margen derecho para separar del borde */
+}
+
+/* Botones de idioma */
+.lang-switch button {
+    border: 1px solid var(--color-primary); /* Borde del botón */
+    background: var(--color-bg-white); /* Fondo blanco del botón */
+    color: var(--color-primary); /* Color del texto del botón */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    padding: 0.3rem 0.8rem; /* Padding interno del botón */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background 0.2s, color 0.2s; /* Transiciones suaves para hover */
+}
+
+/* Botón de idioma activo o hover */
+.lang-switch button.active, .lang-switch button:hover {
+    background: var(--color-primary); /* Fondo al pasar el mouse o activo */
+    color: var(--color-bg-white); /* Color del texto al pasar el mouse o activo */
+}
+
+/* Área principal desplazable */
+main {
+    flex: 1 0 auto; /* Permite que el main ocupe el espacio restante */
+    padding: 6.5rem 1rem 4.5rem 1rem; /* Padding para el contenido principal */
+    display: flex; /* Flexbox para alinear contenido */
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: center; /* Alinea los elementos al centro */
+    overflow-y: auto; /* Permite desplazamiento vertical */
+    height: 100vh; /* Altura completa de la ventana */
+    box-sizing: border-box; /* Incluye padding y border en el ancho/alto total */
+}
+
+/* Caja principal reutilizable */
+.box {
+    background: linear-gradient(135deg, #fff8ed 80%, #f6c177 150%); /* Fondo con gradiente */
+    box-shadow: 0 4px 24px 0 rgba(141,85,36,0.13), 0 1.5px 6px 0 rgba(246,193,119,0.10); /* Sombra para la caja */
+    border: 2.5px solid var(--color-border-main); /* Borde de la caja */
+    border-radius: 16px; /* Bordes redondeados de la caja */
+    padding: 2rem; /* Padding interno de la caja */
+    margin-bottom: 2rem; /* Margen inferior de la caja */
+    max-width: 800px; /* Ancho máximo de la caja */
+    width: 100%; /* Ancho completo de la caja */
+    float: left; /* Permite que la caja flote a la izquierda */
+    transition: box-shadow 0.2s; /* Transición suave para la sombra */
+}
+
+/* Sombra al pasar el mouse sobre la caja */
+.box:hover {
+    box-shadow: 0 8px 32px 0 rgba(141,85,36,0.18), 0 2px 12px 0 rgba(246,193,119,0.13); /* Sombra más intensa al pasar el mouse */
+}
+
+/* Caja hero (principal): caja destacada en la parte superior de la página */
+.hero {
+    background: var(--color-bg-hero-gradient); /* Fondo con gradiente especial para la hero */
+    color: var(--color-primary); /* Color de texto principal */
+    box-shadow: var(--color-shadow-hero); /* Sombra más notoria para destacar */
+    border: 2px solid var(--color-primary-light); /* Borde con color primario claro */
+}
+
+/* Galería de fotos: contenedor principal de la galería */
+.gallery {
+    display: flex; /* Usa flexbox para organizar el contenido */
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+}
+
+/* Título de la galería */
+.gallery h1 {
+    margin-bottom: 2rem; /* Espacio inferior para separar el título de las fotos */
+}
+
+/* Contenedor de fotos de la galería */
+.photos {
+    display: flex; /* Usa flexbox para las fotos */
+    flex-wrap: wrap; /* Permite que las fotos pasen a la siguiente línea si no caben */
+    gap: 1rem; /* Espacio entre las fotos */
+    justify-content: center; /* Centra las fotos horizontalmente */
+    margin-top: 0; /* Sin margen superior */
+}
+
+/* Estilos para cada foto en la galería */
+.photo {
+    width: 380px; /* Ancho fijo de la imagen */
+    height: 260px; /* Alto fijo de la imagen */
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin distorsión */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: var(--color-shadow-photo); /* Sombra suave para resaltar la imagen */
+    border: 2px solid var(--color-border-main); /* Borde alrededor de la imagen */
+    float: left; /* Permite que la imagen flote a la izquierda */
+}
+
+/* Contenedor principal del formulario de contacto */
+.contact-form {
+    display: flex; /* Usa flexbox para organizar los campos */
+    flex-direction: column; /* Coloca los campos en columna */
+    gap: 1rem; /* Espacio entre los campos */
+}
+
+/* Estilos para los campos de entrada y área de texto */
+.contact-form input, .contact-form textarea {
+    border: 1px solid var(--color-border-main); /* Borde de los campos */
+    border-radius: 6px; /* Bordes redondeados */
+    padding: 0.5rem; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de fuente */
+    resize: vertical; /* Permite redimensionar verticalmente el textarea */
+}
+
+/* Botón del formulario de contacto: estilos base */
+.contact-form button {
+    background: linear-gradient(90deg, #f6c177 0%, #c68642 100%); /* Fondo con gradiente */
+    color: var(--color-primary); /* Color de texto */
+    border: none; /* Sin borde */
+    border-radius: 6px; /* Bordes redondeados */
+    padding: 0.7rem 1.5rem; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de fuente */
+    cursor: pointer; /* Cursor tipo puntero */
+    box-shadow: var(--color-shadow); /* Sombra suave */
+    transition: background 0.2s, color 0.2s; /* Transición suave */
+    font-weight: 600; /* Texto en semi-negrita */
+}
+
+/* Botón del formulario de contacto: efecto hover */
+.contact-form button:hover {
+    background: linear-gradient(90deg, #c68642 0%, #f6c177 100%); /* Gradiente invertido */
+    color: var(--color-bg-white); /* Texto blanco al pasar el mouse */
+}
+
+/* Footer fijo inferior: permanece visible en la parte inferior de la pantalla */
+footer {
+    flex-shrink: 0; /* Evita que el footer se reduzca en flexbox */
+    text-align: center; /* Centra el texto dentro del footer */
+    padding: 1rem; /* Espaciado interno */
+    background: var(--color-bg-white); /* Fondo blanco */
+    border-top: 2.5px solid var(--color-border-main); /* Borde superior */
+    box-shadow: 0 -4px 16px 0 rgba(141,85,36,0.10); /* Sombra superior */
+    position: fixed; /* Fija el footer en la parte inferior */
+    left: 0; /* Alinea a la izquierda */
+    bottom: 0; /* Alinea abajo */
+    width: 100%; /* Ocupa todo el ancho */
+    z-index: 100; /* Prioridad sobre otros elementos */
+}
+
+/* Listas con sangría: mejora la legibilidad de los elementos de lista */
+ul li {
+    list-style-position: inside; /* Coloca la viñeta dentro del contenido */
+    padding-left: 1em; /* Sangría a la izquierda */
+    text-indent: 1em; /* Sangría del texto */
+}
+
+/* Títulos generales */
+h1, h2, h3 {
+    margin-bottom: 0.5rem; /* Espacio inferior para separar títulos de contenido */
+}
+
+/* Título especial de about */
+h1[data-i18n="about_title"] {
+    margin-bottom: 0; /* Sin margen inferior para este título específico */
+}
+
+/* Imagen principal hero */
+.hero-logo {
+    height: 150px; /* Altura de la imagen principal */
+    width: auto; /* Ancho automático para mantener proporciones */
+    display: block; /* Muestra la imagen como bloque */
+    margin: 0 auto 1rem auto; /* Centra la imagen y agrega margen inferior */
+}
+
+/* Instagram principal: contenedor del enlace de Instagram en la sección hero */
+.hero-instagram {
+    display: flex; /* Usa flexbox para alinear el contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    font-size: 1.35rem; /* Tamaño de fuente */
+    font-style: italic; /* Texto en cursiva */
+    color: var(--color-primary); /* Color principal */
+    margin-top: 1.5rem; /* Margen superior */
+    margin-bottom: 0.5rem; /* Margen inferior */
+    gap: 0.4em; /* Espacio entre elementos */
+}
+
+/* Icono de Instagram dentro del hero */
+.hero-instagram .fa-instagram {
+    color: var(--color-primary); /* Color del icono */
+    font-size: 1.3em; /* Tamaño del icono */
+    margin: 0; /* Sin margen */
+    align-self: baseline; /* Alinea el icono con la línea base */
+    position: relative; /* Posición relativa para ajuste vertical */
+    top: 2px; /* Ajuste vertical del icono */
+}
+
+/* Usuario de Instagram (nombre de usuario) */
+.hero-instagram .insta-user {
+    font-weight: 600; /* Texto en semi-negrita */
+    color: var(--color-primary); /* Color del texto */
+}
+
+/* Eslogan principal en la sección hero */
+.hero-slogan {
+    text-align: center; /* Centra el texto */
+    font-size: 1.35rem; /* Tamaño de fuente */
+    font-style: italic; /* Texto en cursiva */
+    margin-top: 0.5rem; /* Margen superior */
+}
+
+/* Título de cada foto en la galería */
+.photo-title {
+    margin-top: 1.2rem; /* Margen superior */
+    margin-bottom: 0.5rem; /* Margen inferior */
+    font-size: 1.18rem; /* Tamaño de fuente */
+    font-weight: 700; /* Negrita */
+    text-align: center; /* Centra el texto */
+    letter-spacing: 0.01em; /* Espaciado entre letras */
+}
+
+/* Descripción de cada foto en la galería */
+.photo-desc {
+    margin: 0 0 0.5rem 0; /* Margen inferior */
+    font-size: 1.04rem; /* Tamaño de fuente */
+    line-height: 1.5; /* Altura de línea */
+    text-align: justify; /* Justifica el texto */
+    padding: 0 0.5rem; /* Padding lateral */
+}
+
+/* Caja individual de cada foto en la galería */
+.photo-box.box {
+    display: flex; /* Usa flexbox */
+    flex-direction: column; /* Elementos en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    gap: 0.5rem; /* Espacio entre elementos */
+}
+
+/* Justificar texto en cajas principales */
+.box p {
+    text-align: justify; /* Justifica el texto dentro de las cajas */
+    line-height: 1.5; /* Altura de línea para mejor legibilidad */
+}
+
+/* Eliminar margen inferior de la última caja */
+main > .box:last-of-type {
+    margin-bottom: 0; /* Elimina el margen inferior de la última caja para evitar espacio extra */
+}
+
+/* Centrar título principal en sección box */
+section.box > h1 {
+    text-align: center; /* Centra el título principal dentro de la caja */
+}
+
+/* Responsive: ancho y padding de cajas */
+@media (max-width: 900px) {
+    .box {
+        max-width: 98vw; /* Hace que la caja ocupe casi todo el ancho de la pantalla */
+        padding: 1rem; /* Reduce el padding para pantallas pequeñas */
+    }
+    .photos {
+        flex-direction: column; /* Coloca las fotos en columna */
+        align-items: center; /* Centra las fotos horizontalmente */
+    }
+}
+
+/* Responsive: menú y navbar */
+@media (max-width: 700px) {
+    .navbar {
+        flex-direction: column; /* Coloca los elementos de la navbar en columna */
+        align-items: flex-start; /* Alinea los elementos al inicio */
+    }
+    .menu {
+        width: 100%; /* El menú ocupa todo el ancho */
+        left: 0; /* Alinea el menú a la izquierda */
+        right: 0; /* Alinea el menú a la derecha */
+        top: 64px; /* Ajusta la posición superior del menú */
+        padding: 1rem 0; /* Padding vertical para el menú */
+    }
+    .menu-toggle {
+        display: block; /* Muestra el botón de menú hamburguesa */
+    }
+}

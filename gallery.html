@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos principales y enlaces a recursos externos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owlaff - Galería</title>
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Hoja de estilos principal -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Script de funcionalidades (idioma, menú, etc.) -->
+    <script defer src="js/script.js"></script>
+</head>
+<body>
+    <!-- Encabezado fijo con barra de navegación principal -->
+    <header>
+        <nav class="navbar">
+            <!-- Logo e identidad visual, enlaza siempre al inicio -->
+            <a href="index.html" class="logo">
+                <img src="img/icon.png" alt="Owlaff icon" class="logo-img">
+                <span class="logo-text">Owlaff</span>
+            </a>
+            <!-- Selector de idioma (ES/EN) -->
+            <div class="lang-switch">
+                <button id="lang-es">ES</button>
+                <button id="lang-en">EN</button>
+            </div>
+            <!-- Botón menú hamburguesa para móviles -->
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+            <!-- Menú de navegación principal -->
+            <ul class="menu">
+                <li><a href="index.html" data-i18n="menu_home">Inicio</a></li>
+                <li><a href="about.html" data-i18n="menu_about">Sobre el Proyecto</a></li>
+                <li><a href="gallery.html" data-i18n="menu_gallery">Galería</a></li>
+                <li><a href="contact.html" data-i18n="menu_contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Hero: título principal de la galería -->
+        <section class="hero box">
+            <h1 data-i18n="gallery_title">Galería de Fotos</h1>
+        </section>
+        <!-- Galería de imágenes: cada sección representa una foto con su título y descripción -->
+        <!-- Primera imagen: waffle con frutas y miel -->
+        <section class="photo-box box">
+            <img src="img/img1.jpeg" alt="Foto 1" class="photo">
+            <h2 class="photo-title" data-i18n="gallery_img1_title">Waffle con frutas y miel</h2>
+            <p class="photo-desc" data-i18n="gallery_img1_desc">Un clásico reinventado con frescura y dulzura. Este waffle artesanal está coronado con jugosas fresas, arándanos, rodajas de banano y un delicado toque de miel natural. Una combinación vibrante que celebra los sabores más frescos en cada bocado.</p>
+        </section>
+        <!-- Segunda imagen: waffle con chocolate y avellanas -->
+        <section class="photo-box box">
+            <img src="img/img2.jpeg" alt="Foto 2" class="photo">
+            <h2 class="photo-title" data-i18n="gallery_img2_title">Waffle con chocolate y avellanas</h2>
+            <p class="photo-desc" data-i18n="gallery_img2_desc">La indulgencia perfecta hecha waffle. Bañado en chocolate oscuro fundido y espolvoreado con trozos de avellanas tostadas, este waffle gourmet se acompaña de una bola de helado de vainilla para equilibrar lo crujiente con lo cremoso. Pura tentación.</p>
+        </section>
+        <!-- Tercera imagen: waffle salado con pollo frito -->
+        <section class="photo-box box">
+            <img src="img/img3.jpeg" alt="Foto 3" class="photo">
+            <h2 class="photo-title" data-i18n="gallery_img3_title">Waffle salado con pollo frito</h2>
+            <p class="photo-desc" data-i18n="gallery_img3_desc">Una fusión irresistible entre lo dulce y lo salado. Crujiente pollo frito servido sobre un waffle dorado, con un suave toque de sirope de maple y un fresco acompañamiento de arúgula. Ideal para quienes buscan algo diferente, sabroso y reconfortante.</p>
+        </section>
+    </main>
+    <!-- Pie de página fijo con derechos de autor -->
+    <footer>
+        <p>&copy; 2025 Owlaff</p>
+    </footer>
+</body>
+</html>
